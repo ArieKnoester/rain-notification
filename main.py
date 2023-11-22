@@ -10,6 +10,11 @@ SMTP_HOST = ""  # Ex. smtp.gmail.com
 FROM_ADDR = ""
 FROM_ADDR_APP_PASSWORD = ""
 TO_ADDR = ""
+# The current OneCall endpoint (v3.0) requires saving
+# a payment method before it is authorized for your account.
+# I did not want to provide credit card info for a small exercise like this.
+# The 2.5 and 2.8 versions work without payment information for now. (2023-11-21)
+# Docs: https://openweathermap.org/api/one-call-api
 ENDPOINT = "https://api.openweathermap.org/data/2.8/onecall"
 PARAMETERS = {
     "lat": LATITUDE,
@@ -19,11 +24,6 @@ PARAMETERS = {
 }
 
 
-# The current OneCall endpoint (v3.0) requires saving
-# a payment method before it is authorized for your account.
-# I did not want to provide credit card info for a small exercise like this.
-# The 2.5 and 2.8 versions work without payment information for now. (2023-11-21)
-# Docs: https://openweathermap.org/api/one-call-api
 def request_weather_data():
     response = requests.get(ENDPOINT, params=PARAMETERS)
     response.raise_for_status()
